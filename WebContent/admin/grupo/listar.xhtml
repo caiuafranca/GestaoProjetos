@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+<h:head>
+	<title>Listar Grupos</title>
+</h:head> 
+<body> 
+	<h:form>
+	<h:messages />
+	<h:commandLink action="#{grupoController.novo()}" value="Cadastrar Grupo" />
+	<h:dataTable value="#{grupoController.gDao.listarTodos()}" var="obj" frame="box"
+						 cellpadding="3" rules="all">
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			#{obj.id}		
+		</h:column>
+		<h:column>
+			<f:facet name="header">NOME</f:facet>
+			#{obj.nome}		
+		</h:column>
+		<h:column>
+			<f:facet name="header">ALTERAR</f:facet>
+				<h:commandLink action="#{grupoController.alterar(obj)}" value="Alterar" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">DELETAR</f:facet>
+				<h:commandLink action="#{grupoController.deletar()}" value="Deletar" 
+				onclick="if(!confirm('Confirma a exlusão do grupo?')) return false" />
+		</h:column>
+	</h:dataTable>	
+	</h:form>
+
+</body> 
+</html>
